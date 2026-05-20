@@ -20,19 +20,37 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-sm font-semibold text-[#FF6B1A]">
+          <Link href={"/"} className="text-sm font-semibold text-[#FF6B1A]">
             Home
           </Link>
 
           <Link
-            href="/rooms"
+            href={"/rooms"}
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             Rooms
           </Link>
+          <Link
+            href={"/add-room"}
+            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
+          >
+            Add Room
+          </Link>
+          <Link
+            href={"/my-listings"}
+            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
+          >
+            My Listings
+          </Link>
+          <Link
+            href={"/my-bookings"}
+            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
+          >
+            My Bookings
+          </Link>
 
           <Link
-            href="/about"
+            href={"/about"}
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             About
