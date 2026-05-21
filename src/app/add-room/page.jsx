@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, Checkbox, Input } from "@heroui/react";
+import { Button, Card, Checkbox } from "@heroui/react";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import {
   HiOutlinePhotograph,
@@ -18,7 +18,29 @@ const amenities = [
   { value: "Air Conditioning", icon: "❄️" },
 ];
 
+const inputClass =
+  "w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-3 text-[14px] text-[#111111] placeholder-[#6B7280] outline-none transition-colors hover:border-[#FF6B1A] focus:border-[#FF6B1A]";
+
+const labelClass = "block text-[13px] font-semibold text-[#111111] mb-1.5";
+
 const AddRoomPage = () => {
+  const onSubmit = async(e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+
+    const res = await fetch("http://localhost:5000/rooms", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const roomsData = await res.json();
+    console.log(roomsData);
+
+  };
   return (
     <section className="min-h-screen bg-[#F7F3EF] px-4 py-14">
       <div className="mx-auto max-w-5xl">
@@ -39,7 +61,7 @@ const AddRoomPage = () => {
           {/* Main Form */}
           <div className="lg:col-span-2">
             <Card className="rounded-3xl border border-[#E5E7EB] bg-white shadow-xl">
-              <form className="space-y-8 p-6 md:p-10">
+              <form onSubmit={onSubmit} className="space-y-8 p-6 md:p-10">
                 {/* Basic Info */}
                 <div>
                   <h2 className="mb-5 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#111111]">
@@ -47,44 +69,41 @@ const AddRoomPage = () => {
                     Basic Information
                   </h2>
                   <div className="grid grid-cols-1 gap-5">
-                    <Input
-                      label="Room Name"
-                      placeholder="e.g. Quiet Focus Room A"
-                      variant="bordered"
-                      radius="lg"
-                      size="lg"
-                      labelPlacement="outside"
-                      startContent={
-                        <MdOutlineMeetingRoom
-                          className="text-[#6B7280]"
-                          size={18}
+                    {/* Room Name */}
+                    <div>
+                      <label className={labelClass}>
+                        Room Name <span className="text-[#FF6B1A]">*</span>
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#6B7280]">
+                          <MdOutlineMeetingRoom size={18} />
+                        </span>
+                        <input
+                          type="text"
+                          name="roomName"
+                          placeholder="e.g. Quiet Focus Room A"
+                          className={`${inputClass} pl-10`}
                         />
-                      }
-                      classNames={{
-                        label: "text-[13px] font-semibold text-[#111111]",
-                        inputWrapper:
-                          "border-[#E5E7EB] hover:border-[#FF6B1A] focus-within:!border-[#FF6B1A] rounded-xl",
-                      }}
-                    />
-                    <Input
-                      label="Image URL"
-                      placeholder="https://example.com/room.jpg"
-                      variant="bordered"
-                      radius="lg"
-                      size="lg"
-                      labelPlacement="outside"
-                      startContent={
-                        <HiOutlinePhotograph
-                          className="text-[#6B7280]"
-                          size={18}
+                      </div>
+                    </div>
+
+                    {/* Image URL */}
+                    <div>
+                      <label className={labelClass}>
+                        Image URL <span className="text-[#FF6B1A]">*</span>
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#6B7280]">
+                          <HiOutlinePhotograph size={18} />
+                        </span>
+                        <input
+                          type="url"
+                          name="imageUrl"
+                          placeholder="https://example.com/room.jpg"
+                          className={`${inputClass} pl-10`}
                         />
-                      }
-                      classNames={{
-                        label: "text-[13px] font-semibold text-[#111111]",
-                        inputWrapper:
-                          "border-[#E5E7EB] hover:border-[#FF6B1A] focus-within:!border-[#FF6B1A] rounded-xl",
-                      }}
-                    />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -95,62 +114,60 @@ const AddRoomPage = () => {
                     Room Details
                   </h2>
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-                    <Input
-                      label="Floor"
-                      placeholder="e.g. 3rd Floor"
-                      variant="bordered"
-                      radius="lg"
-                      size="lg"
-                      labelPlacement="outside"
-                      startContent={
-                        <HiOutlineOfficeBuilding
-                          className="text-[#6B7280]"
-                          size={18}
+                    {/* Floor */}
+                    <div>
+                      <label className={labelClass}>
+                        Floor <span className="text-[#FF6B1A]">*</span>
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#6B7280]">
+                          <HiOutlineOfficeBuilding size={18} />
+                        </span>
+                        <input
+                          type="text"
+                          name="floor"
+                          placeholder="e.g. 3rd Floor"
+                          className={`${inputClass} pl-10`}
                         />
-                      }
-                      classNames={{
-                        label: "text-[13px] font-semibold text-[#111111]",
-                        inputWrapper:
-                          "border-[#E5E7EB] hover:border-[#FF6B1A] focus-within:!border-[#FF6B1A] rounded-xl",
-                      }}
-                    />
-                    <Input
-                      type="number"
-                      label="Capacity"
-                      placeholder="e.g. 6"
-                      variant="bordered"
-                      radius="lg"
-                      size="lg"
-                      labelPlacement="outside"
-                      startContent={
-                        <HiOutlineUsers className="text-[#6B7280]" size={18} />
-                      }
-                      classNames={{
-                        label: "text-[13px] font-semibold text-[#111111]",
-                        inputWrapper:
-                          "border-[#E5E7EB] hover:border-[#FF6B1A] focus-within:!border-[#FF6B1A] rounded-xl",
-                      }}
-                    />
-                    <Input
-                      type="number"
-                      label="Hourly Rate ($)"
-                      placeholder="e.g. 10"
-                      variant="bordered"
-                      radius="lg"
-                      size="lg"
-                      labelPlacement="outside"
-                      startContent={
-                        <HiOutlineCurrencyDollar
-                          className="text-[#6B7280]"
-                          size={18}
+                      </div>
+                    </div>
+
+                    {/* Capacity */}
+                    <div>
+                      <label className={labelClass}>
+                        Capacity <span className="text-[#FF6B1A]">*</span>
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#6B7280]">
+                          <HiOutlineUsers size={18} />
+                        </span>
+                        <input
+                          type="number"
+                          name="capacity"
+                          placeholder="e.g. 6"
+                          className={`${inputClass} pl-10`}
                         />
-                      }
-                      classNames={{
-                        label: "text-[13px] font-semibold text-[#111111]",
-                        inputWrapper:
-                          "border-[#E5E7EB] hover:border-[#FF6B1A] focus-within:!border-[#FF6B1A] rounded-xl",
-                      }}
-                    />
+                      </div>
+                    </div>
+
+                    {/* Hourly Rate */}
+                    <div>
+                      <label className={labelClass}>
+                        Hourly Rate ($){" "}
+                        <span className="text-[#FF6B1A]">*</span>
+                      </label>
+                      <div className="relative">
+                        <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-[#6B7280]">
+                          <HiOutlineCurrencyDollar size={18} />
+                        </span>
+                        <input
+                          type="number"
+                          name="hourlyRate"
+                          placeholder="e.g. 10"
+                          className={`${inputClass} pl-10`}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -160,14 +177,15 @@ const AddRoomPage = () => {
                     <span className="h-4 w-1 rounded-full bg-[#FF6B1A]" />
                     Description
                   </h2>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[13px] font-semibold text-[#111111]">
-                      Description
+                  <div>
+                    <label className={labelClass}>
+                      Room Description <span className="text-[#FF6B1A]">*</span>
                     </label>
                     <textarea
+                      name="description"
                       rows={5}
                       placeholder="Describe the room — its atmosphere, rules, and what makes it great for studying…"
-                      className="w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-3 text-[14px] text-[#111111] placeholder-[#6B7280] outline-none transition-colors hover:border-[#FF6B1A] focus:border-[#FF6B1A]"
+                      className={inputClass}
                     />
                   </div>
                 </div>
@@ -178,14 +196,24 @@ const AddRoomPage = () => {
                     <span className="h-4 w-1 rounded-full bg-[#FF6B1A]" />
                     Amenities
                   </h2>
+                  <label className="mb-3 block text-[13px] font-semibold text-[#111111]">
+                    Select all that apply
+                  </label>
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {amenities.map(({ value, icon }) => (
                       <label
                         key={value}
                         className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3 shadow-sm transition-all duration-200 hover:border-[#FF6B1A] hover:shadow-md"
                       >
-                        <Checkbox value={value} size="md" color="warning" />
+                        <input
+                          type="checkbox"
+                          name="amenities"
+                          value={value}
+                          className="h-4 w-4 accent-[#FF6B1A]"
+                        />
+
                         <span className="text-base">{icon}</span>
+
                         <span className="text-[13px] font-medium text-[#111111]">
                           {value}
                         </span>
