@@ -18,7 +18,7 @@ const FeaturedRooms = async () => {
       <div className="mx-auto max-w-7xl">
         {/* Heading */}
         <div className="mb-10 text-center">
-          <h1 className="text-4xl font-black text-[#111111]">
+          <h1 className="text-4xl font-black text-[#111111] [font-family:var(--font-poppins)]">
             Explore Study Rooms
           </h1>
 
