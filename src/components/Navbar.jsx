@@ -1,10 +1,21 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+
+  const user = session?.user;
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    toast.success("Signed out successfully!")
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/80 backdrop-blur-xl shadow-sm">
       <nav className="mx-auto flex h-18 container items-center justify-between ">
@@ -14,7 +25,7 @@ const Navbar = () => {
             alt="StudyNook"
             width={180}
             height={50}
-            className="object-contain md:w-[220px]"
+            className="object-contain md:w-55"
             priority
           />
         </Link>
@@ -58,26 +69,46 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 sm:flex">
-          <Link href={"/login"}>
-            <Button
-              variant="bordered"
-              radius="full"
-              size="sm"
-              className="border-[#111111] px-6 font-semibold text-[#111111] hover:bg-[#111111] hover:text-white"
-            >
-              Login
-            </Button>
+          <Link
+            href={"/profile"}
+            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
+          >
+            Profile
           </Link>
 
-          <Link href={"/register"}>
-            <Button
-              radius="full"
-              size="sm"
-              className="bg-[#FF6B1A] px-6 font-semibold text-white hover:bg-[#FF8A3D]"
-            >
-              Register
-            </Button>
-          </Link>
+          {user ? (
+            <>
+              <span>
+                <Avatar>
+                  <Avatar.Image alt={user?.name} src={user?.image} />
+                  <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+              </span>
+              <Button onClick={handleSignOut} variant="danger">Sign Out</Button>
+            </>
+          ) : (
+            <>
+              <Link href={"/login"}>
+                <Button
+                  variant="bordered"
+                  radius="full"
+                  size="sm"
+                  className="border-[#111111] px-6 font-semibold text-[#111111] hover:bg-[#111111] hover:text-white"
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link href={"/register"}>
+                <Button
+                  radius="full"
+                  size="sm"
+                  className="bg-[#FF6B1A] px-6 font-semibold text-white hover:bg-[#FF8A3D]"
+                >
+                  Register
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
 
         <div className="flex items-center gap-3 sm:hidden">
