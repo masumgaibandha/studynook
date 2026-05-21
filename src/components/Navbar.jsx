@@ -58,26 +58,26 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 sm:flex">
-          <Button
-            as={Link}
-            href="/login"
-            variant="bordered"
-            radius="full"
-            size="sm"
-            className="border-[#111111] px-6 font-semibold text-[#111111] hover:bg-[#111111] hover:text-white"
-          >
-            Login
-          </Button>
+          <Link href={"/login"}>
+            <Button
+              variant="bordered"
+              radius="full"
+              size="sm"
+              className="border-[#111111] px-6 font-semibold text-[#111111] hover:bg-[#111111] hover:text-white"
+            >
+              Login
+            </Button>
+          </Link>
 
-          <Button
-            as={Link}
-            href="/register"
-            radius="full"
-            size="sm"
-            className="bg-[#FF6B1A] px-6 font-semibold text-white hover:bg-[#FF8A3D]"
-          >
-            Register
-          </Button>
+          <Link href={"/register"}>
+            <Button
+              radius="full"
+              size="sm"
+              className="bg-[#FF6B1A] px-6 font-semibold text-white hover:bg-[#FF8A3D]"
+            >
+              Register
+            </Button>
+          </Link>
         </div>
 
         <div className="flex items-center gap-3 sm:hidden">
