@@ -4,6 +4,7 @@ import { FaWifi, FaRegStar } from "react-icons/fa";
 import { MdOutlineMapsHomeWork, MdOutlineMeetingRoom } from "react-icons/md";
 import { HiOutlineUsers, HiOutlineCurrencyDollar } from "react-icons/hi";
 import { Button } from "@heroui/react";
+import { EditModal } from "@/components/EditModal";
 
 const RoomsDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -36,12 +37,9 @@ const RoomsDetailsPage = async ({ params }) => {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Button
-              radius="full"
-              className="bg-[#FF6B1A] px-6 font-semibold text-white hover:bg-[#FF8A3D]"
-            >
-              Edit
-            </Button>
+            
+              <EditModal room={room} />
+            
 
             <Button
               radius="full"
