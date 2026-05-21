@@ -13,12 +13,13 @@ const Navbar = () => {
 
   const handleSignOut = async () => {
     await authClient.signOut();
-    toast.success("Signed out successfully!")
+    toast.success("Signed out successfully!");
   };
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/80 backdrop-blur-xl shadow-sm">
-      <nav className="mx-auto flex h-18 container items-center justify-between ">
+      <nav className="mx-auto flex h-18 container items-center justify-between">
+        {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src="/assets/study-nook-logo.png"
@@ -30,65 +31,84 @@ const Navbar = () => {
           />
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden items-center gap-8 md:flex">
-          <Link href={"/"} className="text-sm font-semibold text-[#FF6B1A]">
+          <Link href="/" className="text-sm font-semibold text-[#FF6B1A]">
             Home
           </Link>
 
           <Link
-            href={"/rooms"}
+            href="/rooms"
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             Rooms
           </Link>
+
           <Link
-            href={"/add-room"}
+            href="/add-room"
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             Add Room
           </Link>
+
           <Link
-            href={"/my-listings"}
+            href="/my-listings"
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             My Listings
           </Link>
+
           <Link
-            href={"/my-bookings"}
+            href="/my-bookings"
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             My Bookings
           </Link>
 
           <Link
-            href={"/about"}
+            href="/about"
             className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
           >
             About
           </Link>
         </div>
 
+        {/* Right Side */}
         <div className="hidden items-center gap-3 sm:flex">
-          <Link
-            href={"/profile"}
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            Profile
-          </Link>
-
           {user ? (
-            <>
+            <div className="relative group">
               <span>
                 <Avatar>
-                  <Avatar.Image alt={user?.name} src={user?.image} />
+                  <Avatar.Image
+                    referrerPolicy="no-referrer"
+                    alt={user?.name}
+                    src={user?.image}
+                  />
+
                   <Avatar.Fallback>{user?.name?.charAt(0)}</Avatar.Fallback>
                 </Avatar>
               </span>
-              <Button onClick={handleSignOut} variant="danger">Sign Out</Button>
-            </>
+
+              {/* Dropdown */}
+              <div className="invisible absolute right-0 top-14 z-50 w-52 rounded-2xl border border-[#E5E7EB] bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <Link
+                  href="/profile"
+                  className="block rounded-xl px-3 py-2 text-sm font-medium text-[#111111] hover:bg-[#F7F3EF]"
+                >
+                  Profile
+                </Link>
+
+                <button
+                  onClick={handleSignOut}
+                  className="w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-red-500 hover:bg-red-50"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
           ) : (
             <>
-              <Link href={"/login"}>
+              <Link href="/login">
                 <Button
                   variant="bordered"
                   radius="full"
@@ -98,7 +118,8 @@ const Navbar = () => {
                   Login
                 </Button>
               </Link>
-              <Link href={"/register"}>
+
+              <Link href="/register">
                 <Button
                   radius="full"
                   size="sm"
@@ -111,6 +132,7 @@ const Navbar = () => {
           )}
         </div>
 
+        {/* Mobile */}
         <div className="flex items-center gap-3 sm:hidden">
           <Button
             as={Link}

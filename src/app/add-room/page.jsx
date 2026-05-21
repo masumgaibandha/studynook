@@ -2,6 +2,7 @@
 
 import { Button, Card, Checkbox } from "@heroui/react";
 import { MdOutlineMeetingRoom } from "react-icons/md";
+
 import {
   HiOutlinePhotograph,
   HiOutlineOfficeBuilding,

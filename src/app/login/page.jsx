@@ -39,6 +39,11 @@ const LoginPage = () => {
     }
   };
 
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <section className="min-h-screen bg-[#F7F3EF] px-4 py-16">
       <div className="mx-auto max-w-md">
@@ -56,13 +61,8 @@ const LoginPage = () => {
         {/* Card */}
         <Card className="rounded-3xl border border-[#E5E7EB] bg-white p-6 shadow-xl md:p-8">
           <Form onSubmit={onSubmit} className="flex flex-col gap-5">
-
             {/* Email */}
-            <TextField
-              isRequired
-              name="email"
-              type="email"
-            >
+            <TextField isRequired name="email" type="email">
               <Label className="text-sm font-semibold text-[#111111]">
                 Email
               </Label>
@@ -73,11 +73,7 @@ const LoginPage = () => {
             </TextField>
 
             {/* Password */}
-            <TextField
-              isRequired
-              name="password"
-              type="password"
-            >
+            <TextField isRequired name="password" type="password">
               <Label className="text-sm font-semibold text-[#111111]">
                 Password
               </Label>
@@ -103,10 +99,11 @@ const LoginPage = () => {
           {/* Google Button UI Only */}
           <Button
             type="button"
-            variant="bordered"
+            variant="outline"
             radius="full"
             size="lg"
             className="w-full border-[#E5E7EB] bg-white font-semibold text-[#111111]"
+            onClick={handleGoogleSignin}
           >
             <FcGoogle size={22} />
             Continue with Google
