@@ -5,6 +5,7 @@ import { MdOutlineMapsHomeWork, MdOutlineMeetingRoom } from "react-icons/md";
 import { HiOutlineUsers, HiOutlineCurrencyDollar } from "react-icons/hi";
 import { Button } from "@heroui/react";
 import { EditModal } from "@/components/EditModal";
+import { DeleteRoom } from "@/components/DeleteRoom";
 
 const RoomsDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -39,15 +40,7 @@ const RoomsDetailsPage = async ({ params }) => {
           <div className="flex items-center gap-3">
             
               <EditModal room={room} />
-            
-
-            <Button
-              radius="full"
-              variant="bordered"
-              className="border-red-500 px-6 font-semibold text-red-500 hover:bg-red-500 hover:text-white"
-            >
-              Delete
-            </Button>
+                <DeleteRoom room={room} />
           </div>
         </div>
 

@@ -8,6 +8,7 @@ import {
   HiOutlineUsers,
   HiOutlineCurrencyDollar,
 } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 const amenities = [
   { value: "Whiteboard", icon: "✏️" },
@@ -38,7 +39,8 @@ const AddRoomPage = () => {
       body: JSON.stringify(data),
     });
     const roomsData = await res.json();
-    console.log(roomsData);
+    toast.success("Room created successfully");
+    window.location.href = "/rooms";
 
   };
   return (
