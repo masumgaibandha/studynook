@@ -7,7 +7,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/80 backdrop-blur-xl shadow-sm">
-      <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 md:px-8">
+      <nav className="mx-auto flex h-18 container items-center justify-between ">
         <Link href="/" className="flex items-center">
           <Image
             src="/assets/study-nook-logo.png"
