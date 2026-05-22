@@ -6,6 +6,7 @@ import { HiOutlineUsers, HiOutlineCurrencyDollar } from "react-icons/hi";
 import { Button } from "@heroui/react";
 import { EditModal } from "@/components/EditModal";
 import { DeleteRoom } from "@/components/DeleteRoom";
+import BookingCard from "@/components/BookingCard";
 
 const RoomsDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -122,9 +123,10 @@ const RoomsDetailsPage = async ({ params }) => {
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <button className="rounded-full bg-[#FF6B1A] px-10 py-3 font-semibold text-white hover:bg-[#FF8A3D]">
+              {/* <button className="rounded-full bg-[#FF6B1A] px-10 py-3 font-semibold text-white hover:bg-[#FF8A3D]">
                 Book Now
-              </button>
+              </button> */}
+              <BookingCard room={room} />
 
               <Link
                 href="/rooms"

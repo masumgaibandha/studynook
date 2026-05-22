@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
-
   const user = session?.user;
 
   const handleSignOut = async () => {
