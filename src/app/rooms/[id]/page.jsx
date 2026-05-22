@@ -7,12 +7,20 @@ import { Button } from "@heroui/react";
 import { EditModal } from "@/components/EditModal";
 import { DeleteRoom } from "@/components/DeleteRoom";
 import BookingCard from "@/components/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const RoomsDetailsPage = async ({ params }) => {
   const { id } = await params;
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
 
   const res = await fetch(`http://localhost:5000/rooms/${id}`, {
     cache: "no-store",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
   });
 
   const room = await res.json();

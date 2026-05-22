@@ -50,12 +50,7 @@ const Navbar = () => {
             Add Room
           </Link>
 
-          <Link
-            href="/my-listings"
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            My Listings
-          </Link>
+
 
           <Link
             href="/my-bookings"
