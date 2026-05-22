@@ -122,7 +122,7 @@ const RoomsDetailsPage = async ({ params }) => {
               </span>
             </div>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               {/* <button className="rounded-full bg-[#FF6B1A] px-10 py-3 font-semibold text-white hover:bg-[#FF8A3D]">
                 Book Now
               </button> */}
@@ -130,7 +130,7 @@ const RoomsDetailsPage = async ({ params }) => {
 
               <Link
                 href="/rooms"
-                className="rounded-full border border-[#111111] px-10 py-3 text-center font-semibold text-[#111111] hover:bg-[#111111] hover:text-white"
+                className="flex h-12 w-full items-center justify-center rounded-full border border-[#111111] px-10 text-center font-semibold text-[#111111] hover:bg-[#111111] hover:text-white sm:w-auto"
               >
                 Back to Rooms
               </Link>

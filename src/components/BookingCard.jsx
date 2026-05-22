@@ -80,7 +80,7 @@ const BookingCard = ({ room }) => {
     <Modal>
       <Button
         radius="full"
-        className="h-12 rounded-full bg-[#FF6B1A] px-10 font-semibold text-white hover:bg-[#FF8A3D]"
+        className="h-12 w-full rounded-full bg-[#FF6B1A] px-10 font-semibold text-white hover:bg-[#FF8A3D] sm:w-auto"
       >
         Book Now
       </Button>
