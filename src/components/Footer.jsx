@@ -13,8 +13,6 @@ const Footer = () => {
         {/* Brand */}
         <div className="flex flex-col items-start space-y-6">
           <div className="mb-[2px]">
-            {" "}
-            {/* matches h3 mb-6 visual top spacing */}
             <Link href="/">
               <Image
                 src="/assets/study-nook-logo.png"
@@ -39,6 +37,7 @@ const Footer = () => {
             >
               <FaFacebookF size={15} />
             </Link>
+
             <Link
               href="https://x.com"
               target="_blank"
@@ -46,6 +45,7 @@ const Footer = () => {
             >
               <FaXTwitter size={15} />
             </Link>
+
             <Link
               href="https://instagram.com"
               target="_blank"
@@ -53,6 +53,7 @@ const Footer = () => {
             >
               <FaInstagram size={15} />
             </Link>
+
             <Link
               href="https://linkedin.com"
               target="_blank"
@@ -66,22 +67,26 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h3 className="mb-6 text-xl font-bold">Quick Links</h3>
+
           <ul className="space-y-4 text-sm text-gray-400">
             <li>
               <Link href="/" className="hover:text-[#FF6B1A]">
                 Home
               </Link>
             </li>
+
             <li>
               <Link href="/rooms" className="hover:text-[#FF6B1A]">
                 Rooms
               </Link>
             </li>
+
             <li>
               <Link href="/add-room" className="hover:text-[#FF6B1A]">
                 Add Room
               </Link>
             </li>
+
             <li>
               <Link href="/my-bookings" className="hover:text-[#FF6B1A]">
                 My Bookings
@@ -93,25 +98,29 @@ const Footer = () => {
         {/* Support */}
         <div>
           <h3 className="mb-6 text-xl font-bold">Support</h3>
+
           <ul className="space-y-4 text-sm text-gray-400">
             <li>
-              <Link href="/contact" className="hover:text-[#FF6B1A]">
-                Contact Us
+              <Link href="/about" className="hover:text-[#FF6B1A]">
+                About Us
               </Link>
             </li>
+
             <li>
-              <Link href="/privacy-policy" className="hover:text-[#FF6B1A]">
-                Privacy Policy
+              <Link href="/rooms" className="hover:text-[#FF6B1A]">
+                Explore Rooms
               </Link>
             </li>
+
             <li>
-              <Link href="/terms" className="hover:text-[#FF6B1A]">
-                Terms & Conditions
+              <Link href="/my-bookings" className="hover:text-[#FF6B1A]">
+                My Bookings
               </Link>
             </li>
+
             <li>
-              <Link href="/faq" className="hover:text-[#FF6B1A]">
-                FAQ
+              <Link href="/add-room" className="hover:text-[#FF6B1A]">
+                Add Room
               </Link>
             </li>
           </ul>
@@ -120,17 +129,21 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h3 className="mb-6 text-xl font-bold">Contact Info</h3>
+
           <div className="space-y-4 text-sm text-gray-400">
             <p className="flex items-center gap-3">
               <MdEmail className="text-[#FF6B1A]" size={18} />
               support@studynook.com
             </p>
+
             <p className="flex items-center gap-3">
               <MdPhone className="text-[#FF6B1A]" size={18} />
               +880 1234-567890
             </p>
+
             <p className="flex items-start gap-3">
               <MdLocationOn className="mt-1 text-[#FF6B1A]" size={18} />
+
               <span>
                 123 Library Avenue,
                 <br />
@@ -144,6 +157,7 @@ const Footer = () => {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-center text-sm text-gray-500 sm:px-6 md:flex-row lg:px-8">
           <p>© 2026 StudyNook. All rights reserved.</p>
+
           <p>Designed for modern library study room booking.</p>
         </div>
       </div>
