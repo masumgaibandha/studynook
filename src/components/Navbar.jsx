@@ -88,12 +88,7 @@ const Navbar = () => {
               </span>
 
               <div className="invisible absolute right-0 top-14 z-50 w-52 rounded-2xl border border-[#E5E7EB] bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/profile"
-                  className="block rounded-xl px-3 py-2 text-sm font-medium text-[#111111] hover:bg-[#F7F3EF]"
-                >
-                  Profile
-                </Link>
+               
 
                 <Link
                   href="/my-listings"
