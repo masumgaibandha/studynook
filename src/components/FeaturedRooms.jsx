@@ -6,7 +6,7 @@ import { MdOutlineMeetingRoom } from "react-icons/md";
 import { HiMiniBuildingOffice2 } from "react-icons/hi2";
 
 const FeaturedRooms = async () => {
-  const res = await fetch("http://localhost:5000/rooms?limit=6", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms?limit=6`, {
     cache: "no-store",
   });
 

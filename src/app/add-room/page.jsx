@@ -46,7 +46,7 @@ const AddRoomPage = () => {
       bookingCount: 0,
     };
 
-    const res = await fetch("http://localhost:5000/rooms", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

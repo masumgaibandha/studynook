@@ -7,7 +7,7 @@ StudyNook is a modern full-stack study room booking platform where users can exp
 ### Client Side
 Frontend Live Link Here:  
 ### Server Side
-Backend Live Link Here: 
+Backend Live Link Here: https://studynook-server-inky.vercel.app/
 
 
 ## GitHub Repositories

@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export function DeleteRoom({ room }) {
   const onDelete = async () => {
     const {data: tokenData} = await authClient.token()
-    const res = await fetch(`http://localhost:5000/rooms/${room._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/rooms/${room._id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${tokenData?.token}`
