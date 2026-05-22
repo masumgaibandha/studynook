@@ -4,9 +4,12 @@ import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -15,10 +18,17 @@ const Navbar = () => {
     toast.success("Signed out successfully!");
   };
 
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Rooms", href: "/rooms" },
+    { name: "Add Room", href: "/add-room" },
+    { name: "My Bookings", href: "/my-bookings" },
+    { name: "About", href: "/about" },
+  ];
+
   return (
     <header className="sticky top-0 z-50 border-b border-[#E5E7EB] bg-white/80 backdrop-blur-xl shadow-sm">
       <nav className="mx-auto flex h-18 container items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src="/assets/study-nook-logo.png"
@@ -30,44 +40,29 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-sm font-semibold text-[#FF6B1A]">
-            Home
-          </Link>
+          {navLinks.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
 
-          <Link
-            href="/rooms"
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            Rooms
-          </Link>
-
-          <Link
-            href="/add-room"
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            Add Room
-          </Link>
-
-
-
-          <Link
-            href="/my-bookings"
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            My Bookings
-          </Link>
-
-          <Link
-            href="/about"
-            className="text-sm font-medium text-[#111111] hover:text-[#FF6B1A]"
-          >
-            About
-          </Link>
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm transition ${
+                  isActive
+                    ? "font-semibold text-[#FF6B1A]"
+                    : "font-medium text-[#111111] hover:text-[#FF6B1A]"
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Right Side */}
         <div className="hidden items-center gap-3 sm:flex">
           {user ? (
             <div className="relative group">
@@ -83,7 +78,6 @@ const Navbar = () => {
                 </Avatar>
               </span>
 
-              {/* Dropdown */}
               <div className="invisible absolute right-0 top-14 z-50 w-52 rounded-2xl border border-[#E5E7EB] bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
                 <Link
                   href="/profile"
@@ -126,7 +120,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile */}
         <div className="flex items-center gap-3 sm:hidden">
           <Button
             as={Link}
