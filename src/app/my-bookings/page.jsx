@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "StudyNook | My Bookings",
+};
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Card } from "@heroui/react";
@@ -11,7 +14,7 @@ const MyBookingPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const {token} = await auth.api.getToken({
+  const { token } = await auth.api.getToken({
     headers: await headers(),
   });
 
@@ -50,7 +53,6 @@ const MyBookingPage = async () => {
   });
 
   const bookings = await res.json();
-  
 
   return (
     <section className="min-h-screen bg-[#F7F3EF] px-4 py-14">
@@ -93,9 +95,9 @@ const MyBookingPage = async () => {
           {bookings.map((booking) => (
             <Card
               key={booking._id}
-              className="overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white shadow-xl"
+              className="flex h-full overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white shadow-xl"
             >
-              <div className="grid grid-cols-1 gap-6 p-5 md:grid-cols-[260px_1fr_auto] md:items-center">
+              <div className="grid h-full grid-cols-1 gap-6 p-5 md:grid-cols-[260px_1fr_auto] md:items-center">
                 <div className="overflow-hidden rounded-2xl">
                   <Image
                     src={booking.imageUrl}
@@ -106,8 +108,14 @@ const MyBookingPage = async () => {
                   />
                 </div>
 
-                <div>
-                  <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#FFF1E8] px-4 py-1.5 text-xs font-semibold capitalize text-[#FF6B1A]">
+                <div className="flex h-full flex-col">
+                  <div
+                    className={`mb-3 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold capitalize ${
+                      booking.status === "confirmed"
+                        ? "bg-green-100 text-green-600"
+                        : "bg-red-100 text-red-600"
+                    }`}
+                  >
                     <MdOutlineMeetingRoom />
                     {booking.status}
                   </div>
@@ -144,7 +152,7 @@ const MyBookingPage = async () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex h-full flex-col justify-center gap-3">
                   <Link href={`/rooms/${booking.roomId}`}>
                     <Button
                       radius="full"
@@ -154,7 +162,9 @@ const MyBookingPage = async () => {
                     </Button>
                   </Link>
 
-                  <BookingCancel bookingId={booking._id} />
+                  {booking.status === "confirmed" && (
+                    <BookingCancel bookingId={booking._id} />
+                  )}
                 </div>
               </div>
             </Card>

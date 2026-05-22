@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# StudyNook – Study Room Booking Platform
 
-## Getting Started
+StudyNook is a modern full-stack study room booking platform where users can explore, list, and reserve study rooms for focused learning and collaboration. Users can create accounts, add their own study rooms, book available rooms, manage bookings, and filter/search rooms easily.
 
-First, run the development server:
+## Live Links
+
+### Client Side
+Frontend Live Link Here:  
+### Server Side
+Backend Live Link Here: 
+
+
+## GitHub Repositories
+
+### Client Repository: https://github.com/masumgaibandha/studynook
+
+### Server Repository: https://github.com/masumgaibandha/studynook-server
+
+## Features
+
+- User Authentication with Better Auth
+- Email & Password Login/Register
+- Google Login Authentication
+- Add New Study Rooms
+- Edit & Delete Own Rooms
+- Dynamic Room Details Page
+- Study Room Booking System
+- Booking Conflict Prevention
+- Cancel Booking Functionality
+- Dynamic Booking Count
+- Search Rooms by Name
+- Filter Rooms by Amenities
+- Latest Featured Rooms Section
+- Responsive Mobile/Tablet/Desktop Design
+- Dynamic Metadata Titles
+- Loading Spinner UI
+- Custom 404 Page
+- Toast Notifications
+- Protected Routes
+- Owner-only Edit/Delete Access
+
+
+## Technologies Used
+
+### Frontend
+- Next.js
+- React
+- Tailwind CSS
+- HeroUI
+- React Hot Toast
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JOSE JWT Verification
+
+### Authentication
+- Better Auth
+- Google OAuth
+
+
+## NPM Packages Used
+
+### Client
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+next
+react
+tailwindcss
+@heroui/react
+react-hot-toast
+react-icons
+better-auth
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+express
+mongodb
+cors
+dotenv
+cookie-parser
+jose-cjs
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Environment Variables
+### Frontend `.env.local`
+NEXT_PUBLIC_API_URL=your_backend_url
+BETTER_AUTH_SECRET=your_secret
+BETTER_AUTH_URL=http://localhost:3000
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend `.env`
+PORT=5000
+MONGODB_URI=your_mongodb_uri
 
-## Learn More
+## Responsive Design
 
-To learn more about Next.js, take a look at the following resources:
+### The project is fully responsive for:
+- Mobile Devices
+- Tablet Devices
+- Desktop Devices
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Author
+Abdullah Al Masum
+Full Stack Web Developer
+Cell: +8801717272853

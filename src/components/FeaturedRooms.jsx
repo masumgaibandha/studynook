@@ -6,12 +6,12 @@ import { MdOutlineMeetingRoom } from "react-icons/md";
 import { HiMiniBuildingOffice2 } from "react-icons/hi2";
 
 const FeaturedRooms = async () => {
-  const res = await fetch("http://localhost:5000/rooms", {
+  const res = await fetch("http://localhost:5000/rooms?limit=6", {
     cache: "no-store",
   });
 
   const rooms = await res.json();
-  const featuredRooms = rooms.slice(0, 6);
+  const featuredRooms = rooms;
 
   return (
     <section className="bg-[#F7F3EF] px-4 py-16">
@@ -32,7 +32,7 @@ const FeaturedRooms = async () => {
           {featuredRooms.map((room) => (
             <div
               key={room._id}
-              className="overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="flex h-full flex-col overflow-hidden rounded-3xl border border-[#E5E7EB] bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
               {/* Image */}
               <div className="relative h-64 w-full overflow-hidden">
@@ -49,7 +49,7 @@ const FeaturedRooms = async () => {
               </div>
 
               {/* Content */}
-              <div className="space-y-5 p-6">
+              <div className="flex flex-1 flex-col space-y-5 p-6">
                 <div>
                   <h2 className="text-2xl font-bold text-[#111111]">
                     {room.roomName}
@@ -79,7 +79,7 @@ const FeaturedRooms = async () => {
                 </div>
 
                 {/* Button */}
-                <Link href={`/rooms/${room._id}`}>
+                <Link href={`/rooms/${room._id}`} className="mt-auto">
                   <Button
                     radius="full"
                     className="w-full bg-[#FF6B1A] font-semibold text-white hover:bg-[#FF8A3D]"

@@ -5,26 +5,27 @@ import { AlertDialog, Button } from "@heroui/react";
 import toast from "react-hot-toast";
 
 export function BookingCancel({ bookingId }) {
- 
-
-    const handleBookingCancel = async () => {
-       const {data: tokenData} = await authClient.token()
-        const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                authorization: `Bearer ${tokenData?.token}`
-            },
-        });
-        const data = await res.json();
-        console.log(data)
-        if (res.ok) {
-            toast("Booking cancelled successfully!");
-        } else {
-            toast.error("Failed to cancel booking. Please try again.");
-        }
-        window.location.reload();
+  const handleBookingCancel = async () => {
+    const { data: tokenData } = await authClient.token();
+    const res = await fetch(
+      `http://localhost:5000/bookings/${bookingId}/cancel`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+      },
+    );
+    const data = await res.json();
+    
+    if (res.ok) {
+      toast.success("Booking cancelled successfully!");
+    } else {
+      toast.error("Failed to cancel booking. Please try again.");
     }
+    window.location.reload();
+  };
   return (
     <AlertDialog>
       <Button
@@ -40,20 +41,23 @@ export function BookingCancel({ bookingId }) {
             <AlertDialog.CloseTrigger />
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
-              <AlertDialog.Heading>
-                Cancel Booking?
-              </AlertDialog.Heading>
+              <AlertDialog.Heading>Cancel Booking?</AlertDialog.Heading>
             </AlertDialog.Header>
             <AlertDialog.Body>
               <p>
-                This will permanently cancel your booking. Are you sure you want to proceed?
+                This will permanently cancel your booking. Are you sure you want
+                to proceed?
               </p>
             </AlertDialog.Body>
             <AlertDialog.Footer>
               <Button slot="close" variant="tertiary">
                 Cancel
               </Button>
-              <Button onClick={handleBookingCancel} slot="close" variant="danger">
+              <Button
+                onClick={handleBookingCancel}
+                slot="close"
+                variant="danger"
+              >
                 Confirm Cancel
               </Button>
             </AlertDialog.Footer>

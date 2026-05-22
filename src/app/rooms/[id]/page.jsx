@@ -1,29 +1,45 @@
-import Image from "next/image";
-import Link from "next/link";
-import { FaWifi, FaRegStar } from "react-icons/fa";
-import { MdOutlineMapsHomeWork, MdOutlineMeetingRoom } from "react-icons/md";
-import { HiOutlineUsers, HiOutlineCurrencyDollar } from "react-icons/hi";
-import { Button } from "@heroui/react";
-import { EditModal } from "@/components/EditModal";
-import { DeleteRoom } from "@/components/DeleteRoom";
-import BookingCard from "@/components/BookingCard";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-
-const RoomsDetailsPage = async ({ params }) => {
+export async function generateMetadata({ params }) {
   const { id } = await params;
-  const {token} = await auth.api.getToken({
-    headers: await headers(),
-  });
 
   const res = await fetch(`http://localhost:5000/rooms/${id}`, {
     cache: "no-store",
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
   });
 
   const room = await res.json();
+
+  return {
+    title: `StudyNook | ${room.roomName}`,
+  };
+}
+import Image from "next/image";
+import Link from "next/link";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { FaWifi, FaRegStar } from "react-icons/fa";
+import { MdOutlineMapsHomeWork, MdOutlineMeetingRoom } from "react-icons/md";
+import { HiOutlineUsers, HiOutlineCurrencyDollar } from "react-icons/hi";
+
+import { EditModal } from "@/components/EditModal";
+import { DeleteRoom } from "@/components/DeleteRoom";
+import BookingCard from "@/components/BookingCard";
+
+const RoomsDetailsPage = async ({ params }) => {
+  const { id } = await params;
+
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const user = session?.user;
+
+  const res = await fetch(`http://localhost:5000/rooms/${id}`, {
+    cache: "no-store",
+  });
+
+  const room = await res.json();
+
+  const isOwner =
+    user?.email && room?.ownerEmail && user.email === room.ownerEmail;
 
   const {
     roomName,
@@ -47,9 +63,12 @@ const RoomsDetailsPage = async ({ params }) => {
           </Link>
 
           <div className="flex items-center gap-3">
-            
-              <EditModal room={room} />
+            {isOwner && (
+              <>
+                <EditModal room={room} />
                 <DeleteRoom room={room} />
+              </>
+            )}
           </div>
         </div>
 
@@ -114,7 +133,7 @@ const RoomsDetailsPage = async ({ params }) => {
                 <FaRegStar className="mb-2 text-[#FF6B1A]" size={22} />
                 <p className="text-sm text-[#6B7280]">Booking Count</p>
                 <h3 className="mt-1 text-lg font-bold text-[#111111]">
-                  0 Bookings
+                  {room.bookingCount || 0} Bookings
                 </h3>
               </div>
             </div>
@@ -126,14 +145,11 @@ const RoomsDetailsPage = async ({ params }) => {
 
               <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF1E8] px-4 py-2 text-sm font-semibold text-[#FF6B1A]">
                 <FaWifi />
-                {amenities}
+                {Array.isArray(amenities) ? amenities.join(", ") : amenities}
               </span>
             </div>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              {/* <button className="rounded-full bg-[#FF6B1A] px-10 py-3 font-semibold text-white hover:bg-[#FF8A3D]">
-                Book Now
-              </button> */}
               <BookingCard room={room} />
 
               <Link
