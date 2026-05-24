@@ -40,10 +40,11 @@ const LoginPage = () => {
   };
 
   const handleGoogleSignin = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-    });
-  };
+  await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/",
+  });
+};
   return (
     <section className="min-h-screen bg-[#F7F3EF] px-4 py-16">
       <div className="mx-auto max-w-md">
