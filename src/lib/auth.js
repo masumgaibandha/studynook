@@ -13,6 +13,10 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client,
   }),
+  trustedOrigins: [
+    "https://studynook-omega.vercel.app",
+    "http://localhost:3000",
+  ],
   emailAndPassword: {
     enabled: true,
     autoSignIn: false,
@@ -27,10 +31,15 @@ export const auth = betterAuth({
     cookieCache: {
       enabled: true,
       strategy: "jwt",
-      maxAge: 7 * 24 * 60 * 60
-    }
+      maxAge: 7 * 24 * 60 * 60,
+    },
   },
-  plugins: [
-    jwt() 
-  ],
+  advanced: {
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true,
+      httpOnly: true,
+    },
+  },
+  plugins: [jwt()],
 });
